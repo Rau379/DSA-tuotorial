@@ -1,0 +1,44 @@
+// A tree is spanning tree if there are n nodes and n-1 edges and each node is reachable from one another
+// and a tree is a MST if we draw all spanning tree and the tree having minimum sum is called MST and most imortant thing a tree can have a more than one MST
+
+// Problem statement
+// Given a wieghted, undirected and connected graph of V vertices and E edges. The task is to find the sum of the weights of the minimum spanning tree.
+int spanningTree(int V, vector<vector<int>> adj[])
+{
+    // creating a min heap priority queue for storing the {weight, node}, store the parent value in the case of storing MST
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
+    q.push({0, 0});
+    int sum = 0;
+    vector<bool> vis(V, false);
+    // E logE+ E logE
+    // toatl time complexity:- O(E*logV) in adjacency list, V= number of vertices, E= number of edges
+    // in case of matrix :- O((E+V)logV)
+    // space complexity:- O(V)
+    while (!q.empty())
+    {
+        // log E for the traversing all the edges in the worst case
+        auto it = q.top();
+        q.pop();
+        int edgeweight = it[0];
+        int node = it[1];
+        // taking the visited case
+        if (vis[node] == 1)
+            continue;
+        // add it to the MST
+        vis[node] = 1;
+        sum += edgeweight;
+        // Time complexity= ElogE
+        for (auto it : adj[adjnode])
+        {
+            int adjnode = it[0];
+            int wt = it[1];
+
+            if (!vis[adjnode])
+            {
+                q.push({wt, adjnode});
+            }
+        }
+    }
+    return sum;
+}
