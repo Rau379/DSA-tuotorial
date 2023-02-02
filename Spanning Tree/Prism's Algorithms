@@ -6,7 +6,6 @@
 int spanningTree(int V, vector<vector<int>> adj[])
 {
     // creating a min heap priority queue for storing the {weight, node}, store the parent value in the case of storing MST
-
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
     q.push({0, 0});
     int sum = 0;
